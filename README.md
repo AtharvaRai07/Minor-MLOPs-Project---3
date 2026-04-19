@@ -1,1 +1,1 @@
-## MLOPS Project Using CircleCI
+## MLOPS Project Using Github Actions
