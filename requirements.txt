@@ -1,0 +1,11 @@
+pandas
+numpy
+seaborn
+matplotlib
+scikit-learn
+setuptools
+ipykernel
+pyyaml
+google-cloud-storage
+flask
+-e .

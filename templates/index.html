@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Iris Flower Classifier - AI Powered</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <!-- Animated Background Elements -->
+    <div class="background-wrapper">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="floating-element float-1">🌸</div>
+        <div class="floating-element float-2">🌺</div>
+        <div class="floating-element float-3">🌷</div>
+    </div>
+
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="header-glow"></div>
+            <div class="header-content">
+                <h1 class="title">
+                    <span class="title-word">✨</span>
+                    <span class="title-word gradient-text">Iris</span>
+                    <span class="title-word">Flower</span>
+                    <span class="title-word gradient-text">Classifier</span>
+                </h1>
+                <p class="subtitle">🤖 Powered by Advanced Machine Learning</p>
+                <p class="subtitle-secondary">Identify beautiful iris flowers with precision</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="content-wrapper">
+            <!-- Prediction Result Card -->
+            {% if prediction %}
+            <div class="result-card success-animation">
+                <div class="result-glow"></div>
+                <div class="result-check">✓</div>
+                <div class="result-content">
+                    <h2>🎉 Classification Complete</h2>
+                    <p class="result-text">{{ prediction }}</p>
+                    <div class="result-badge">Success</div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Error Card -->
+            {% if error %}
+            <div class="result-card error-animation">
+                <div class="result-glow-error"></div>
+                <div class="result-error">⚠</div>
+                <div class="result-content">
+                    <h2>❌ Oops!</h2>
+                    <p class="error-text">{{ error }}</p>
+                    <div class="result-badge error">Error</div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Form Card -->
+            <div class="form-card">
+                <div class="form-header">
+                    <div class="header-badge">📊 INPUT MEASUREMENTS</div>
+                    <h2>Enter Flower Dimensions</h2>
+                    <p class="form-subtitle">Measurements in centimeters (cm)</p>
+                </div>
+
+                <form method="POST" action="/predict" class="form">
+                    <div class="form-grid">
+                        <!-- Sepal Length -->
+                        <div class="form-group">
+                            <div class="input-wrapper">
+                                <label for="sepal_length" class="form-label">
+                                    <span class="label-icon">📏</span>
+                                    Sepal Length
+                                </label>
+                                <input type="number" id="sepal_length" name="sepal_length" step="0.1" placeholder="5.1"
+                                    min="4" max="8" required class="form-input">
+                                <div class="input-hint">Range: 4.0-8.0 cm</div>
+                            </div>
+                        </div>
+
+                        <!-- Sepal Width -->
+                        <div class="form-group">
+                            <div class="input-wrapper">
+                                <label for="sepal_width" class="form-label">
+                                    <span class="label-icon">📐</span>
+                                    Sepal Width
+                                </label>
+                                <input type="number" id="sepal_width" name="sepal_width" step="0.1" placeholder="3.5"
+                                    min="2" max="4.5" required class="form-input">
+                                <div class="input-hint">Range: 2.0-4.5 cm</div>
+                            </div>
+                        </div>
+
+                        <!-- Petal Length -->
+                        <div class="form-group">
+                            <div class="input-wrapper">
+                                <label for="petal_length" class="form-label">
+                                    <span class="label-icon">🌸</span>
+                                    Petal Length
+                                </label>
+                                <input type="number" id="petal_length" name="petal_length" step="0.1" placeholder="1.4"
+                                    min="1" max="7" required class="form-input">
+                                <div class="input-hint">Range: 1.0-7.0 cm</div>
+                            </div>
+                        </div>
+
+                        <!-- Petal Width -->
+                        <div class="form-group">
+                            <div class="input-wrapper">
+                                <label for="petal_width" class="form-label">
+                                    <span class="label-icon">🌺</span>
+                                    Petal Width
+                                </label>
+                                <input type="number" id="petal_width" name="petal_width" step="0.1" placeholder="0.2"
+                                    min="0.1" max="2.5" required class="form-input">
+                                <div class="input-hint">Range: 0.1-2.5 cm</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-button">
+                        <span class="button-shimmer"></span>
+                        <span class="button-text">Classify My Flower</span>
+                        <span class="button-icon">→</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Info Cards Section -->
+            <div class="info-header">
+                <h2>🌼 Meet Our Iris Species</h2>
+            </div>
+
+            <div class="info-section">
+                <!-- Setosa Card -->
+                <div class="info-card setosa-card">
+                    <div class="card-header">
+                        <div class="card-icon-bg setosa-bg">🌸</div>
+                        <span class="card-badge setosa-badge">Type 1</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Setosa</h3>
+                        <p class="card-description">Small and delicate with distinctive petals</p>
+                        <div class="card-stats">
+                            <span class="stat">Small Size</span>
+                            <span class="stat">Compact</span>
+                        </div>
+                    </div>
+                    <div class="card-border"></div>
+                </div>
+
+                <!-- Virginica Card -->
+                <div class="info-card virginica-card">
+                    <div class="card-header">
+                        <div class="card-icon-bg virginica-bg">🌹</div>
+                        <span class="card-badge virginica-badge">Type 2</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Virginica</h3>
+                        <p class="card-description">Elegant and large with rich coloring</p>
+                        <div class="card-stats">
+                            <span class="stat">Large Size</span>
+                            <span class="stat">Premium</span>
+                        </div>
+                    </div>
+                    <div class="card-border"></div>
+                </div>
+
+                <!-- Versicolor Card -->
+                <div class="info-card versicolor-card">
+                    <div class="card-header">
+                        <div class="card-icon-bg versicolor-bg">🌷</div>
+                        <span class="card-badge versicolor-badge">Type 3</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Versicolor</h3>
+                        <p class="card-description">Medium-sized with varied colors</p>
+                        <div class="card-stats">
+                            <span class="stat">Medium Size</span>
+                            <span class="stat">Varied</span>
+                        </div>
+                    </div>
+                    <div class="card-border"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>🌿 Built with love | ML-Powered Iris Classification | 2024</p>
+            <div class="footer-accent"></div>
+        </div>
+    </footer>
+</body>
+
+</html>
