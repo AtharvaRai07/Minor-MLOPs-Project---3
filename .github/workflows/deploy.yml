@@ -9,7 +9,7 @@ env:
     PROJECT_ID: ${{ secrets.GCP_PROJECT_ID}}
     SERVICE_ACCOUNT_KEY: ${{ secrets.GCP_SERVICE_KEY}}
     GKE_CLUSTER: "powerful-clusters"
-    GKE_REGION: "us-central1-a"
+    GKE_REGION: "us-central1"
     DEPLOYMENT_NAME: "mlops-app"
     REPOSITORY: "us-central1-docker.pkg.dev/encoded-joy-418604/my-repo"
     IMAGE_NAME: "us-central1-docker.pkg.dev/encoded-joy-418604/my-repo/mlops-app"
