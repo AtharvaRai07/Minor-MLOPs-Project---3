@@ -37,6 +37,7 @@ jobs:
 
             - name: Build and Push Image
               run: |
+                apt-get update && apt-get install -y docker.io
                 docker build -t $IMAGE_NAME:$GITHUB_SHA .
                 docker push $IMAGE_NAME:$GITHUB_SHA
 
